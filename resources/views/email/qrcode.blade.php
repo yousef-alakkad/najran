@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wad</title>
+    <style>
+
+        @font-face {
+            font-family: hrsd;
+            src: url({{url('public/fonts/HRSD-Regular.ttf')}});
+        }
+        * {
+            font-family: "hrsd";
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #1d848f; margin: 0 !important; padding: 0 !important;direction: ltr;">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#1d848f" align="center">
+            <table border="0" cellpadding="0" cellspacing="0" width="480">
+                <tr>
+                    <td align="center" valign="top" style="padding: 40px 10px 40px 10px;">
+                        <div
+                            style="display: block;background-color: #fff; font-family: Helvetica, Arial, sans-serif; color: #ffffff; font-size: 30px;font-weight: bold;border-radius: 5px;padding: 20px;"
+                            border="0">
+                            <div class="text-center logo-group">
+                                <img src="{{asset('public/assets/images/logo.png')}}" height="82"
+                                     alt="logo">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#f4f4f4" align="left" valign="top">
+            <div
+                style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;
+                min-width: 320px;
+                padding: 20px;
+                margin: 20px auto;
+                background-color: #fff;
+                max-width: 430px;
+                ">
+
+                <div style="font-size: 18px; color:#000; margin:8px 0 0;font-weight:bold;text-align:right">
+                        <h4>
+                            شكرا لتسجيلك بملتقى المهارات والتدريب "وعد" بمنطقة نجران
+                            <br>
+                            بتاريخ الأحد 3 نوفمبر 2024
+                            <br>
+                            يبدأ التسجيل والاستقبال للحفل الرئيسي في تمام الساعة العاشرة صباحاً
+                        </h4>
+                </div>
+
+                <br>
+                <br>
+                <div style="text-align: center">
+                    <a href="{{url('/badge' . '/' . $member->code)}}" class="btn btn-secondary" style="
+                            background-color: #56af78;
+                            border-color: #56af78;
+                            color: #fff;
+                            padding: 9px 14px;
+                            border-radius: 10px;
+                            text-decoration: none;
+                            font-size: 15px;">
+                        بطاقة الحضور
+                    </a>
+                    <br>
+                    <br>
+                    (يجب إبرازها عند الدخول)
+
+                </div>
+                <br>
+                <a href="https://maps.app.goo.gl/W1Duc4HJXX1tYjzK7" style="display:block;margin: 0 auto;width: fit-content;">
+                    <p style="font-weight:bold;background:#fd931e;text-decoration:none !important;color: #fff !important; display:inline-block; margin: 10px 0;text-transform:uppercase;font-size: 16px;padding:9px 26px;border-radius:8px;">
+                        الموقع
+                    </p>
+                </a>
+
+
+            </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+</html>

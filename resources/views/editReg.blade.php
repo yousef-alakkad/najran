@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="{{app()->getLocale()}}" style="direction: {{app()->getLocale() == 'ar' ? 'rtl' : 'ltr'}};">
+<head>
+    <meta charset="utf-8"/>
+    <title>Wad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Wad" name="description"/>
+    <meta content="Themesdesign" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{asset('public/favicon.png')}}">
+
+    <!-- Bootstrap Css -->
+    <link href="{{asset('public/assets/css/bootstrap-rtl.min.css')}}" rel="stylesheet" type="text/css"/>
+    <!-- Icons Css -->
+    <link href="{{asset('public/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link href="{{asset('public/assets/css/app-rtl.min.css')}}" rel="stylesheet" type="text/css"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+        @font-face {
+            font-family: hrsd;
+            src: url({{url('public/fonts/HRSD-Regular.ttf')}});
+        }
+
+        * {
+            font-family: "cairo";
+            font-size: 18px;
+        }
+
+        body {
+            color: #158285;
+            height: 100% !important;
+        }
+
+        .btn-primary {
+            background-color: #f7941d;
+            border-color: groove #f7941d;
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #f7941d;
+            border-color: #f7941d;
+        }
+
+        .btn-check:active + .btn-primary, .btn-check:checked + .btn-primary, .btn-primary.active, .btn-primary:active, .show > .btn-primary.dropdown-toggle {
+            color: #fff;
+            background-color: #f7941d;
+            border-color: #f7941d;
+        }
+
+        .bg-primary {
+            --bs-bg-opacity: 1;
+            background-color: #1c569f !important;
+        }
+
+        a {
+            color: #158285;
+            text-decoration: none;
+        }
+
+        @media (max-width: 994px) {
+
+            .logo-group {
+                display: block;
+            }
+
+            .logo-group img {
+                margin-bottom: 20px;
+            }
+        }
+
+        .authentication-bg::before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: linear-gradient(135deg, #fe931f 0%, #56af79 51%, #1d858e 100%);
+            color: white;
+            opacity: 0.63;
+        }
+        .iti {
+            width: 100%;
+            display: block;
+        }
+        .iti__country-list{
+            left: 0;
+        }
+    </style>
+</head>
+
+
+<body class="authentication-bg bg-primary position-relative">
+    <div class="home-center">
+        <div class="home-desc-center">
+
+            <div class="container">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-md-8 col-lg-9 col-xl-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="px-2 py-3">
+
+                                    <a href="wad-programs.com" class="text-center d-block mx-auto">
+                                        <img src="{{asset('public/assets/images/logo.png')}}" height="82"
+                                             alt="logo">
+                                    </a>
+
+                                    <div class="mt-2 pt-2 ">
+
+                                        @if(session()->has('error'))
+                                            <div class="alert alert-danger p-2">
+                                                {{session()->get('error')}}
+                                            </div>
+                                        @endif
+                                        @if(session()->has('success'))
+                                            <div class="alert alert-success p-2">
+                                                {{session()->get('success')}}
+                                            </div>
+                                        @endif
+
+                                        <form class="form-horizontal mt-4 pt-2" method="post">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <h5> الاسم الأول</h5>
+                                                <input type="text" id="first_name"
+                                                       name="first_name" value="{{old('first_name') ?? $member->first_name}}"
+                                                       class="form-control" disabled/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>  الاسم الأخير</h5>
+                                                <input type="text" id="last_name"
+                                                       name="last_name" value="{{old('last_name') ?? $member->last_name}}"
+                                                       class="form-control" disabled/>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h5> {{__('auth.mobile')}}</h5>
+
+                                                <input type="text"
+                                                       maxlength="9" dir="ltr"
+                                                       id="mobile" value="{{old('mobile') ?? $member->mobile}}"
+                                                       name="mobile" class="form-control" disabled/>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h5>البريد الالكتروني </h5>
+                                                <input type="email" id="email" value="{{old('email') ?? $member->email}}"
+                                                       name="email" class="form-control" disabled/>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h5>المنطقة </h5>
+                                                <input type="text" id="city" value="{{old('city') ?? $member->city}}"
+                                                       name="city" class="form-control" disabled/>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h5>الجنس </h5>
+                                                <select type="text"
+                                                        id="gender" class="form-control"
+                                                        name="gender" disabled>
+                                                    <option value="">--اختر--</option>
+                                                    <option value="ذكر" {{$member->gender == 'ذكر' ? 'selected' : ''}}>ذكر</option>
+                                                    <option value="أنثى" {{$member->gender == 'أنثى' ? 'selected' : ''}}>أنثى</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h5>المهنة </h5>
+                                                <select type="text" id="job"
+                                                        class="form-control"
+                                                        name="job" disabled>
+                                                    <option value="">--اختر--</option>
+                                                    <option value="طالب" {{$member->job == 'طالب' ? 'selected' : ''}}>طالب</option>
+                                                    <option value="موظف" {{$member->job == 'موظف' ? 'selected' : ''}}>موظف</option>
+                                                    <option value="باحث عن عمل" {{$member->job == 'باحث عن عمل' ? 'selected' : ''}}>باحث عن عمل</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3 job-divs" style="display: {{$member->job == 'موظف' ? 'block' : 'none'}};">
+                                                <h5>المسمى الوظيفي </h5>
+                                                <select type="text"
+                                                        id="position" class="form-control"
+                                                        name="position" disabled>
+                                                    <option value="">--اختر--</option>
+                                                    <option value="رئيس مجلس إدارة" {{$member->position == 'رئيس مجلس إدارة' ? 'selected' : ''}}>رئيس مجلس إدارة </option>
+                                                    <option value="رئيس تنفيذي" {{$member->position == 'رئيس تنفيذي' ? 'selected' : ''}}>رئيس تنفيذي</option>
+                                                    <option value="مدير عام" {{$member->position == 'مدير عام' ? 'selected' : ''}}>مدير عام</option>
+                                                    <option value="مدير ادارة" {{$member->position == 'مدير ادارة' ? 'selected' : ''}}>مدير ادارة</option>
+                                                    <option value="الوطائف التخصصية" {{$member->position == 'الوطائف التخصصية' ? 'selected' : ''}}>الوطائف التخصصية</option>
+                                                    <option value="الوظائف الادارية" {{$member->position == 'الوظائف الادارية' ? 'selected' : ''}}>الوظائف الادارية</option>
+                                                    <option value="وطائف اخرى" {{$member->position == 'وطائف اخرى' ? 'selected' : ''}}>وطائف اخرى</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3 others-divs" style="display: {{$member->others ? 'block' : 'none'}};">
+                                                <h5>أدخل المسمى الوظيفي </h5>
+                                                <input type="text" id="others" value="{{$member->others ?? ''}}"
+                                                       name="others" class="form-control" disabled/>
+                                            </div>
+
+                                            <div class="mb-3 job-divs" style="display: {{$member->job == 'موظف' ? 'block' : 'none'}};">
+                                                <h5>جهة العمل </h5>
+                                                <input type="text" id="side" value="{{$member->side ?? ''}}"
+                                                       name="side" class="form-control" disabled/>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h5>نوع الحضور </h5>
+                                                <select type="text"
+                                                        id="registration_type" class="form-control"
+                                                        name="registration_type" >
+                                                    <option value="1" {{$member->registration_type == '1' ? 'selected' : ''}}>التسجيل في الملتقى والحفل الرئيسي</option>
+                                                    <option value="2" {{$member->registration_type == '2' ? 'selected' : ''}}>التسجيل في الملتقى والحفل الرئيسي و ورش
+                                                        العمل
+                                                    </option>
+                                                    <option value="3" {{$member->registration_type == '3' ? 'selected' : ''}}>التسجيل في ورش العمل</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-12 div2">
+                                                <div id="work-shops" style="display: {{$member->registration_type == '1' ? 'none' : 'block'}};">
+                                                    @foreach($workshopsGroup as $workshopStages => $workshops)
+                                                        <div class="form-group">
+                                                            <h5 class="mb-1 mt-3">
+                                                                الرجاء تحديد الورشة المراد التسجيل فيها حضوريا بـ
+                                                                {{\App\Models\Workshop::$stages_name[$workshopStages]}}
+                                                            </h5>
+                                                            <div class="check-gender check-habits">
+                                                            @foreach($workshops as $workshop)
+
+                                                            @php
+                                                                $active = App\Models\WorkShopRegisteredMember::where('workshop_id',$workshop->id)->get()->count() < $workshop->max_count;
+                                                            @endphp
+                                                                <div class="form-check">
+                                                                    @if ($active)
+                                                                    <input type="checkbox"
+                                                                           class="form-check-input"
+                                                                           value="{{$workshop->id}}"
+                                                                           {{$memberWorkshop ? (in_array($workshop->id,$memberWorkshop) ? 'checked' : '') : ''}}
+                                                                           name="workshop[]" id="go{{$workshop->id}}">
+                                                                    @endif
+                                                                    <label class="form-check-label"
+                                                                            style="text-decoration: {{ $active ? 'none' : 'line-through' }};"
+                                                                           for="go{{$workshop->id}}">
+                                                                        {{$workshop->name .' '}}
+                                                                        <span style="direction: ltr;text-align: left;display: inline-block;text-decoration: inherit;">
+                                                                            {{ Carbon\Carbon::createFromFormat('H:i:s',$workshop->end_time)->format('h:i A') .'-'.Carbon\Carbon::createFromFormat('H:i:s',$workshop->start_time)->format('h:i A')}}
+                                                                        </span>
+                                                                        @if (!$active)
+                                                                        <span style="text-decoration: none;display: inline-block;padding-right: 10px;">
+                                                                            (نفذت المقاعد)
+                                                                        </span>
+                                                                        @endif
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="text-center mt-3">
+                                                <button class="btn btn-primary waves-effect waves-light" style="background-color: #56af78;border-color: #56af78;"
+                                                        type="submit">{{__('auth.reg')}}
+                                                </button>
+                                            </div>
+
+
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-2 text-center text-dark" style="direction: ltr">
+
+                                <p>©
+                                    <script>document.write(new Date().getFullYear())</script>
+                                     Wad.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- End Log In page -->
+        </div>
+    </div>
+
+
+<!-- JAVASCRIPT -->
+<script src="{{asset('public/assets/libs/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('public/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/assets/libs/metismenu/metisMenu.min.js')}}"></script>
+<script src="{{asset('public/assets/libs/simplebar/simplebar.min.js')}}"></script>
+<script src="{{asset('public/assets/libs/node-waves/waves.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+<script src="{{asset('public/assets/js/app.js')}}"></script>
+
+
+<script>
+    $('#registration_type').on('change', function () {
+        if ($(this).val() != 1) {
+            $('#work-shops').slideDown()
+        } else {
+            $('#work-shops').slideUp()
+        }
+    })
+
+
+
+    @foreach(\App\Models\Workshop::all() as $workshop)
+    $('#go{{$workshop->id}}').on('change',function(){
+        if($(this).is(':checked')){
+            @foreach(\App\Models\Workshop::where('start_time','>=',$workshop->start_time)->where('end_time','<=',$workshop->end_time)->where('id','!=',$workshop->id)->get() as $workshopSameTime)
+            $('#go{{$workshopSameTime->id}}').prop('disabled', 'disabled');
+            @endforeach
+        }else{
+            @foreach(\App\Models\Workshop::where('start_time','>=',$workshop->start_time)->where('end_time','<=',$workshop->end_time)->where('id','!=',$workshop->id)->get() as $workshopSameTime)
+            $('#go{{$workshopSameTime->id}}').removeAttr('disabled');
+            @endforeach
+        }
+    });
+    @endforeach
+    @if($memberWorkshop)
+        @foreach(\App\Models\Workshop::whereIn('id',$memberWorkshop)->get() as $workshop)
+        @foreach(\App\Models\Workshop::where('start_time','>=',$workshop->start_time)->where('end_time','<=',$workshop->end_time)->where('id','!=',$workshop->id)->get() as $workshopSameTime)
+        $('#go{{$workshopSameTime->id}}').prop('disabled', 'disabled');
+        @endforeach
+        @endforeach
+    @endif
+</script>
+
+<script>
+    {{--var phone_number = window.intlTelInput(document.querySelector("#mobile"), {--}}
+    {{--    separateDialCode: true,--}}
+    {{--    preferredCountries: ["sa"],--}}
+    {{--    hiddenInput: "full",--}}
+    {{--    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"--}}
+    {{--});--}}
+    {{--phone_number.setNumber("{{$member->mobile}}");--}}
+
+    $('#selectpicker').selectpicker();
+    $('.filter-option-inner-inner').text('قم باختيار واحدة أو أكثر');
+
+    $('#mobile').keypress(function (e) {
+        var mobile = $(this).val();
+        if (mobile.length == 9) {
+            e.preventDefault();
+        }
+    });
+</script>
+</body>
+
+</html>
